@@ -1,0 +1,410 @@
+{
+  "meta": {
+    "title": "CDR Analysis Knowledge Base",
+    "source_documents": [
+      "SIPCode.png",
+      "Dialer Status (Part 1).png",
+      "Dialer Status (Part 2).png",
+      "Call_Deliverability_Guide_v08212025c.pdf"
+    ],
+    "source_captured_date": "2026-05-27",
+    "notes": "Transcribed verbatim from source screenshots and source PDF."
+  },
+  "call_deliverability_guide": {
+    "meta": {
+      "title": "Dialing Best Practices To Avoid Inaccurate Spam Labeling",
+      "publisher": "Contact Center Compliance (DNC.com)",
+      "source_file": "Call_Deliverability_Guide_v08212025c.pdf",
+      "source_version": "v08212025c",
+      "copyright_year": "2024",
+      "disclaimer": "This document is guidance and is not legal advice. Contact Center Compliance recommends seeking legal counsel on outbound calling compliance regulations."
+    },
+    "oral_disclosures": {
+      "summary": "Various disclosures must be made clearly before any sales pitch on outbound consumer calls.",
+      "sales_disclosures": [
+        "Identify the identity of the seller (the company on whose behalf you're calling).",
+        "Any business placing outbound sales calls must identify the identity of the seller, or if you're a BPO, the company whose behalf you're calling, clearly before any sales pitch.",
+        "Identify that the purpose of the call is to sell.",
+        "State the nature of the goods/services (a brief description)."
+      ],
+      "prize_sweepstakes_calls": [
+        "Must share that no purchase or payment is required and buying will not improve chances of winning."
+      ],
+      "charity_solicitations": [
+        "Must state the charity's name and that the purpose of the call is to solicit a charitable contribution."
+      ],
+      "prerecorded_and_artificial_ai_voice": [
+        "At the beginning, clearly state the identity of the responsible business/person calling.",
+        "During or after the message, give the telephone number or address that the business can be contacted at.",
+        "Provide an automated opt-out mechanism and honor opt-outs promptly."
+      ]
+    },
+    "caller_id": {
+      "summary": "Per the Truth in Caller ID Act.",
+      "rules": [
+        "Transmit Caller ID showing a working number and, if you substitute, it must be the seller's name and a customer service number answered during business hours (so any individual can make DNC requests).",
+        "Do not block calls from numbers not in your CRM — this violates the FCC's requirement that businesses accept calls from any individual during normal business hours to be put on their internal DNC list.",
+        "Do not use phone numbers that are assigned to multiple businesses. Some dialers assign the same caller ID to multiple businesses.",
+        "Do not use the same phone number for multiple sellers. If your business has multiple brands it sells under (such as a BPO), it is not recommended to use the same caller ID for multiple brands."
+      ]
+    },
+    "do_not_call_compliance": {
+      "rules": [
+        "Honor all DNC requests and keep an internal DNC list; maintain a written DNC policy and train staff.",
+        "National DNC Registry: scrub against a registry version obtained within the last 31 days and keep records of your process.",
+        "May not call numbers on the National DNC unless you have Prior Express Written Consent (PEWC) or an Established Business Relationship (EBR).",
+        "Some states do not honor EBRs as an exemption to call numbers on the DNC list — e.g. Indiana does not consider an EBR a valid exemption; PEWC is required there.",
+        "EBR windows: 18 months after last purchase (transactional) or 3 months after inquiry.",
+        "A customer's DNC request terminates the EBR and must be placed on the business' internal DNC list.",
+        "May call numbers on the DNC list if there is PEWC and the consumer's number has not been recently reassigned since the PEWC date."
+      ]
+    },
+    "reassigned_number_scrubbing_compliance": {
+      "rules": [
+        "Query the most recent RND (Reassigned Number Database) data before calling; recheck on a rolling 30-45 day cadence.",
+        "Calling a DNC-listed number that was recently reassigned is considered a DNC violation.",
+        "Proper RND use can provide a safe harbor if the RND returned an inaccurate result.",
+        "Maine requires RND scrubbing; other states are expected to require it in the future."
+      ]
+    },
+    "call_volume_restrictions": {
+      "all_call_use_cases": [
+        "No more than 3 call attempts on the same business day on the same matter or issue.",
+        "No more than 2 call attempts within 60 minutes on the same matter or issue.",
+        "No more than 1 call attempt within 15 minutes on the same matter or issue."
+      ],
+      "collections": [
+        "No more than 7 call attempts within 7 days about a particular debt.",
+        "No calls for 7 days after a telephone conversation about that debt."
+      ]
+    },
+    "calling_time_restrictions": {
+      "telemarketing": "Do not place telemarketing calls before 8:00 a.m. or after 9:00 p.m. LOCAL TIME AT THE CALLED PARTY'S LOCATION (federal FCC/FTC floor). Many states impose narrower windows — see state_specific_windows below.",
+      "cross_reference": "Local time at the called party's location must be resolved via timezone_reference (state/ZIP-derived timezone), not the caller's own timezone.",
+      "state_specific_windows": {
+        "source": "Pulled live from DNC.com's Compliance Guide (search_compliance_guide tool, TimeRestriction.md, https://www.dncscrub.com/compliance-guide/regulatory-guide) on 2026-07-14. This is the authoritative, actively-maintained source — re-query it periodically rather than treating this snapshot as permanent, since state telemarketing laws change.",
+        "notes": "Where a state distinguishes 'live operator' vs 'prerecorded messages', both are listed — apply whichever matches the call type. 'No state time restrictions; default to federal law' means the 8:00AM-9:00PM federal floor applies. A cell reading 'No calls' means telemarketing calls are prohibited that day regardless of time.",
+        "known_data_quality_flag": "Kentucky's Saturday live-operator window is listed in the source as '10:00AM - 9:00AM', which is logically inconsistent (end time before start time) and appears in the source itself across multiple date-snapshots — likely a data-entry error upstream (probably intended as 10:00AM-9:00PM to match its own Weekday/Sunday values). Flagged rather than silently corrected; verify against KRS § 367.461 directly before relying on it.",
+        "federal_fcc": { "weekday": "8:00AM - 9:00PM", "saturday": "8:00AM - 9:00PM", "sunday": "8:00AM - 9:00PM" },
+        "federal_ftc": { "weekday": "8:00AM - 9:00PM", "saturday": "8:00AM - 9:00PM", "sunday": "8:00AM - 9:00PM" },
+        "states": [
+          { "state": "Alabama", "abbr": "AL", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "No calls" },
+          { "state": "Alaska", "abbr": "AK", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Arizona", "abbr": "AZ", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Arkansas", "abbr": "AR", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "California", "abbr": "CA", "weekday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Colorado", "abbr": "CO", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Connecticut", "abbr": "CT", "weekday": "9:00AM - 8:00PM", "saturday": "9:00AM - 8:00PM", "sunday": "9:00AM - 8:00PM" },
+          { "state": "Delaware", "abbr": "DE", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "District of Columbia", "abbr": "DC", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Florida", "abbr": "FL", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "8:00AM - 8:00PM" },
+          { "state": "Georgia", "abbr": "GA", "weekday": "8:00AM - 8:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Hawaii", "abbr": "HI", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Idaho", "abbr": "ID", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Illinois", "abbr": "IL", "weekday": "8:00AM - 9:00PM for live operators; 9:00AM - 9:00PM for prerecorded messages", "saturday": "8:00AM - 9:00PM for live operators; 9:00AM - 9:00PM for prerecorded messages", "sunday": "8:00AM - 9:00PM for live operators; 9:00AM - 9:00PM for prerecorded messages" },
+          { "state": "Indiana", "abbr": "IN", "weekday": "9:00AM - 8:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "9:00AM - 8:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "9:00AM - 8:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Iowa", "abbr": "IA", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Kansas", "abbr": "KS", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Kentucky", "abbr": "KY", "weekday": "10:00AM - 9:00PM for live operator; 10:00AM - 9:00PM for prerecorded messages", "saturday": "10:00AM - 9:00AM for live operator (see known_data_quality_flag); 10:00AM - 9:00PM for prerecorded messages", "sunday": "10:00AM - 9:00PM for live operator; 10:00AM - 9:00PM for prerecorded messages" },
+          { "state": "Louisiana", "abbr": "LA", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "No calls" },
+          { "state": "Maine", "abbr": "ME", "weekday": "9:00AM - 5:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "No calls", "sunday": "No calls" },
+          { "state": "Maryland", "abbr": "MD", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "8:00AM - 8:00PM" },
+          { "state": "Massachusetts", "abbr": "MA", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "8:00AM - 8:00PM" },
+          { "state": "Michigan", "abbr": "MI", "weekday": "9:00AM - 9:00PM", "saturday": "9:00AM - 9:00PM", "sunday": "9:00AM - 9:00PM" },
+          { "state": "Minnesota", "abbr": "MN", "weekday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Mississippi", "abbr": "MS", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "No calls" },
+          { "state": "Missouri", "abbr": "MO", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Montana", "abbr": "MT", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Nebraska", "abbr": "NE", "weekday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "1:00PM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Nevada", "abbr": "NV", "weekday": "9:00AM - 8:00PM", "saturday": "9:00AM - 8:00PM", "sunday": "9:00AM - 8:00PM" },
+          { "state": "New Hampshire", "abbr": "NH", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "New Jersey", "abbr": "NJ", "weekday": "8:00AM - 9:00PM", "saturday": "8:00AM - 9:00PM", "sunday": "8:00AM - 9:00PM" },
+          { "state": "New Mexico", "abbr": "NM", "weekday": "9:00AM - 9:00PM", "saturday": "9:00AM - 9:00PM", "sunday": "9:00AM - 9:00PM" },
+          { "state": "New York", "abbr": "NY", "weekday": "8:00AM - 9:00PM", "saturday": "8:00AM - 9:00PM", "sunday": "8:00AM - 9:00PM" },
+          { "state": "North Carolina", "abbr": "NC", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "North Dakota", "abbr": "ND", "weekday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Ohio", "abbr": "OH", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Oklahoma", "abbr": "OK", "weekday": "8:00AM - 8:00PM for live operator; 9:00AM - 8:00PM for prerecorded messages", "saturday": "8:00AM - 8:00PM for live operator; 9:00AM - 8:00PM for prerecorded messages", "sunday": "8:00AM - 8:00PM for live operator; 9:00AM - 8:00PM for prerecorded messages" },
+          { "state": "Oregon", "abbr": "OR", "weekday": "8:00AM - 8:00PM for live operators and prerecorded messages", "saturday": "8:00AM - 8:00PM for live operators and prerecorded messages", "sunday": "8:00AM - 8:00PM for live operators and prerecorded messages" },
+          { "state": "Pennsylvania", "abbr": "PA", "weekday": "8:00AM - 9:00PM", "saturday": "9:00AM - 12:00PM", "sunday": "No calls" },
+          { "state": "Rhode Island", "abbr": "RI", "weekday": "9:00AM - 6:00PM", "saturday": "10:00AM - 5:00PM", "sunday": "No calls" },
+          { "state": "South Carolina", "abbr": "SC", "weekday": "8:00AM - 7:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "8:00AM - 7:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "8:00AM - 7:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "South Dakota", "abbr": "SD", "weekday": "9:00AM - 9:00PM", "saturday": "9:00AM - 9:00PM", "sunday": "No calls" },
+          { "state": "Tennessee", "abbr": "TN", "weekday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "8:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Texas", "abbr": "TX", "weekday": "9:00AM - 9:00PM", "saturday": "9:00AM - 9:00PM", "sunday": "12:00PM - 9:00PM" },
+          { "state": "Utah", "abbr": "UT", "weekday": "8:00AM - 9:00PM", "saturday": "8:00AM - 9:00PM", "sunday": "No calls" },
+          { "state": "Vermont", "abbr": "VT", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Virginia", "abbr": "VA", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Washington", "abbr": "WA", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "8:00AM - 8:00PM" },
+          { "state": "West Virginia", "abbr": "WV", "weekday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "saturday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)", "sunday": "9:00AM - 9:00PM for prerecorded messages; for live operator, no state time restriction (federal law applies)" },
+          { "state": "Wisconsin", "abbr": "WI", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Wyoming", "abbr": "WY", "weekday": "8:00AM - 8:00PM", "saturday": "8:00AM - 8:00PM", "sunday": "8:00AM - 8:00PM" },
+          { "state": "Guam", "abbr": "GU", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Northern Mariana Islands", "abbr": "MP", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" },
+          { "state": "Puerto Rico", "abbr": "PR", "weekday": "9:00AM - 9:00PM", "saturday": "9:00AM - 9:00PM", "sunday": "9:00AM - 9:00PM" },
+          { "state": "U.S. Virgin Islands", "abbr": "VI", "weekday": "No state time restrictions; default to federal law", "saturday": "No state time restrictions; default to federal law", "sunday": "No state time restrictions; default to federal law" }
+        ]
+      }
+    },
+    "call_abandonment_rate": {
+      "rule": "Keep call abandonment rate below 3% per campaign, measured over a trailing 30-day period.",
+      "cross_reference": "Abandoned calls in CDR data are identified via dialer_status entries flagged connect_status == \"Not Connected\" that represent no-agent-available drops (e.g. DROP, PDROP) — see dialer_status for the full list."
+    },
+    "call_ring_time": {
+      "rule": "Allow calls to ring for at least 15 seconds or 4 rings before disconnecting."
+    },
+    "connectivity_requirements": {
+      "rules": [
+        "Abandonment rate <= 3% per campaign, measured over 30-day windows.",
+        "Let phones ring >= 15 seconds or 4 rings.",
+        "If no agent is available within 2 seconds of the called party's completed greeting, play a brief recorded message stating the seller name and a callback number."
+      ]
+    },
+    "ai_artificial_voice": {
+      "rules": [
+        "No prerecorded/AI-voice telemarketing without Prior Express Written Consent (PEWC).",
+        "AI-generated voices are considered \"artificial\" under TCPA. Never use AI/prerecorded voice for cold calls."
+      ]
+    },
+    "consent_revocation_and_opt_outs": {
+      "rules": [
+        "Establish a seamless opt-out process for called recipients.",
+        "Must accept revocation via any reasonable method (verbal, email, text keywords like \"STOP\", etc.) and honor within 10 business days.",
+        "If sending a confirmation text, send only one; if the consumer doesn't reply, treat that as revocation.",
+        "If a consumer disconnects their phone number and it is reassigned to a new consumer, consent is no longer valid."
+      ]
+    },
+    "call_volume_consistency": {
+      "rules": [
+        "Keep per-number daily call volume within roughly +/-70-100% of that number's trailing 14-day average. If exceeding that, spread traffic across pre-registered, warmed numbers — consistency beats bursts.",
+        "Avoid hourly bursts (e.g. end-of-day 'catch-up' blitzing); pace calls evenly across business hours. Setting hard daily caps on number usage often causes hourly bursts that get numbers flagged.",
+        "Do not 'spray-and-rotate' caller IDs to mask spikes — rotation patterns and inconsistent histories are detectable and increase label risk. Limiting daily usage of a number helps it be seen as a good, consistent caller."
+      ]
+    },
+    "warm_up_new_numbers": {
+      "rule": "New numbers are subject to quick flagging if not properly warmed up. Recommended: 5-10 calls to internal mobile devices, or 2-3 days of activity on each major carrier, so carriers recognize a campaign spooling up rather than flagging the numbers."
+    }
+  },
+  "metrics_definitions": {
+    "connect_rate": {
+      "based_on": "dialer_status.connect_status",
+      "definition": "Percentage of calls where dialer_status.connect_status == \"Connected\". Dispositions (definitions/descriptions) can change over time, but the connect_status classification is the source of truth for this metric.",
+      "formula": "COUNT(dialer_status.connect_status == 'Connected') / COUNT(total calls)"
+    },
+    "disconnect_rate": {
+      "based_on": "dialer_status.connect_status",
+      "definition": "Percentage of calls where dialer_status.connect_status == \"Not Connected\". Same rule as connect_rate: always derive from connect_status, not from the disposition label itself.",
+      "formula": "COUNT(dialer_status.connect_status == 'Not Connected') / COUNT(total calls)"
+    },
+    "answer_rate": {
+      "based_on": "sip_codes",
+      "definition": "Percentage of calls with SIP code 200. SIP 200 means the call request was accepted by the network/carrier. It does NOT distinguish who or what accepted it (human, voicemail, IVR, or answering machine) — that determination is made by other systems (e.g. AMD detection, agent disposition), not by the SIP code itself.",
+      "formula": "COUNT(sip_code == '200') / COUNT(total calls)"
+    }
+  },
+  "timezone_reference": {
+    "notes": "Timezone is resolved in two steps: (1) derive the state from the lead's ZIP code via a ZIP-to-state lookup, (2) look up that state below for its timezone(s). Most states map to a single timezone. A handful of 'split_states' straddle two timezones — for those, county (or ZIP5) must be checked against split_notes to disambiguate, since state alone is not enough. IMPORTANT (verified 2026-07-14 via web research against Wikipedia 'Time in <State>' pages and 49 CFR federal timezone boundary orders): ZIP3 prefixes frequently straddle a timezone boundary themselves — e.g. Kansas ZIP3 677/678, Kentucky ZIP3 425/427, Michigan ZIP3 498/499, Nebraska ZIP3 691, North Dakota ZIP3 585-588, South Dakota ZIP3 575, Tennessee ZIP3 373-385, Idaho's Salmon-River-split Idaho County. For any state marked \"zip3_reliable\": false below, ZIP3 alone is NOT sufficient for compliance-critical legal-hours decisions — treat ZIP3 as a coarse pre-filter only and fall back to county-level or ZIP5-level lookup for boundary-adjacent ZIPs in those states. Ranges in split_notes marked \"(approximate — verify ZIP5 at boundary)\" have not been confirmed digit-by-digit and should be spot-checked against an authoritative ZIP5-to-county dataset before production use.",
+    "dst_rule": "Under the U.S. Energy Policy Act of 2005, DST runs from the second Sunday in March to the first Sunday in November for all zones that observe it. Arizona (except the Navajo Nation) and Hawaii do not observe DST. U.S. territories (Puerto Rico, U.S. Virgin Islands, Guam, Northern Mariana Islands, American Samoa) do not observe DST.",
+    "timezones": {
+      "Eastern": "UTC-5 standard / UTC-4 during DST",
+      "Central": "UTC-6 standard / UTC-5 during DST",
+      "Mountain": "UTC-7 standard / UTC-6 during DST",
+      "Pacific": "UTC-8 standard / UTC-7 during DST",
+      "Alaska": "UTC-9 standard / UTC-8 during DST",
+      "Hawaii-Aleutian": "UTC-10 (no DST observed in Hawaii; Aleutian Islands portion does observe DST)",
+      "Atlantic": "UTC-4 (no DST; applies to Puerto Rico and U.S. Virgin Islands)",
+      "Chamorro": "UTC+10 (no DST; applies to Guam and Northern Mariana Islands)",
+      "Samoa": "UTC-11 (no DST; applies to American Samoa)"
+    },
+    "states": [
+      { "state": "Alabama", "abbr": "AL", "timezone": "Central", "observes_dst": true },
+      { "state": "Alaska", "abbr": "AK", "timezone": "Alaska", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Most of the state, including Unalaska/Dutch Harbor, is Alaska Time. Only the far-western communities of Adak, Atka, Attu, and Nikolski (the portion of the Aleutians West Census Area west of 169°30'W) are Hawaii-Aleutian Time — the census area itself straddles the line, so 'Aleutians West CA' alone is not sufficient. Unlike Hawaii, this Alaska-based Hawaii-Aleutian pocket DOES observe DST. No verified ZIP3 boundary available — use county/community-level lookup." },
+      { "state": "Arizona", "abbr": "AZ", "timezone": "Mountain", "observes_dst": false, "split": true, "zip3_reliable": true, "split_notes": "Arizona does not observe DST statewide EXCEPT the Navajo Nation (spanning parts of AZ, NM, UT), which does observe DST. The Hopi Reservation, an enclave entirely within the Navajo Nation, does NOT observe DST (matches the rest of AZ) — this is a notable nested exception." },
+      { "state": "Arkansas", "abbr": "AR", "timezone": "Central", "observes_dst": true },
+      { "state": "California", "abbr": "CA", "timezone": "Pacific", "observes_dst": true },
+      { "state": "Colorado", "abbr": "CO", "timezone": "Mountain", "observes_dst": true },
+      { "state": "Connecticut", "abbr": "CT", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Delaware", "abbr": "DE", "timezone": "Eastern", "observes_dst": true },
+      { "state": "District of Columbia", "abbr": "DC", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Florida", "abbr": "FL", "timezone": "Eastern", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Most of Florida is Eastern. The western Panhandle counties of Escambia, Santa Rosa, Okaloosa, Walton, Holmes, Washington, Bay, Calhoun, and Jackson are entirely Central, plus the northern part of Gulf County (Gulf County itself is split). Corrected from an earlier draft that mislabeled Bay County as only 'western' Central (it's entirely Central) and omitted Holmes, Washington, Calhoun, and Jackson. No fully verified ZIP3 crosswalk exists yet for this county list — use county-level lookup rather than a ZIP3 range." },
+      { "state": "Georgia", "abbr": "GA", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Hawaii", "abbr": "HI", "timezone": "Hawaii-Aleutian", "observes_dst": false },
+      { "state": "Idaho", "abbr": "ID", "timezone": "Mountain", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Boundary follows the Salmon River per 49 CFR §71.9: southern/central Idaho is Mountain, the northern panhandle (Coeur d'Alene ZIP3 838, Lewiston ZIP3 835) is Pacific. Idaho's ZIP3 range is 832-838 only — there is no ZIP3 '839' (corrected from an earlier draft error). Idaho County itself is bisected by the Salmon River, so it contains both Mountain and Pacific ZIPs — ZIP3 cannot resolve this internal county split; use ZIP5 or lat/long." },
+      { "state": "Illinois", "abbr": "IL", "timezone": "Central", "observes_dst": true },
+      { "state": "Indiana", "abbr": "IN", "timezone": "Eastern", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Most of Indiana is Eastern. Northwest counties near Chicago (Lake, Porter, Jasper, Newton, Starke, LaPorte — ZIP3 463-464, confirmed) are Central. Southwest counties near Evansville are Central too, but the correct set is only Gibson, Posey, Vanderburgh, Warrick, Perry, Spencer — Pike and Dubois reverted to Eastern in 2007 and must be REMOVED from the Central list (corrected from an earlier 8-county draft). The ZIP3 range for the corrected 6-county SW set has not been re-verified — use county-level lookup for the SW area." },
+      { "state": "Iowa", "abbr": "IA", "timezone": "Central", "observes_dst": true },
+      { "state": "Kansas", "abbr": "KS", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Most of Kansas is Central. Far western counties Greeley, Hamilton, Sherman, and Wallace (only these 4 — confirmed) are Mountain. ZIP3 677 and 678 are each SHARED between Mountain and Central areas (e.g. Colby/Thomas Co.=Central shares 677 with Sherman/Wallace=Mountain; Leoti/Garden City=Central shares 678) — ZIP3 cannot resolve this boundary, use county-level lookup." },
+      { "state": "Kentucky", "abbr": "KY", "timezone": "Eastern", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Eastern ~2/3 of Kentucky is Eastern (ZIP3 400-410 area). Western ~1/3 is Central, but the correct range is approximately ZIP3 420-424 only (approximate — verify ZIP5 at boundary) — corrected from an earlier draft that wrongly extended the Central range through 427, which actually includes Eastern-time Somerset (425, Pulaski Co.) and Elizabethtown/Campbellsville (427, Hardin/Taylor Co.)." },
+      { "state": "Louisiana", "abbr": "LA", "timezone": "Central", "observes_dst": true },
+      { "state": "Maine", "abbr": "ME", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Maryland", "abbr": "MD", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Massachusetts", "abbr": "MA", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Michigan", "abbr": "MI", "timezone": "Eastern", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Most of Michigan is Eastern. Four western Upper Peninsula counties bordering Wisconsin (Gogebic, Iron, Dickinson, Menominee — confirmed, only these 4) are Central. ZIP3 498 and 499 are each SHARED with Eastern-time UP cities (Marquette=Eastern shares 498 with Menominee=Central; Houghton/Ironwood area=Eastern likely shares 499 with Iron River=Central) — ZIP3 cannot resolve this boundary, use county-level lookup." },
+      { "state": "Minnesota", "abbr": "MN", "timezone": "Central", "observes_dst": true },
+      { "state": "Mississippi", "abbr": "MS", "timezone": "Central", "observes_dst": true },
+      { "state": "Missouri", "abbr": "MO", "timezone": "Central", "observes_dst": true },
+      { "state": "Montana", "abbr": "MT", "timezone": "Mountain", "observes_dst": true },
+      { "state": "Nebraska", "abbr": "NE", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Mountain Time covers more than just the panhandle — corrected from an earlier draft that undercounted this significantly. Mountain counties: the 11 panhandle counties (Banner, Box Butte, Cheyenne, Dawes, Deuel, Garden, Kimball, Morrill, Scotts Bluff, Sheridan, Sioux) plus Arthur, Chase, Dundy, Grant, Hooker, Keith, Perkins, and western Cherry County. ZIP3 693 alone is a major undercount, and ZIP3 691 is itself split (Ogallala/Keith Co.=Mountain vs. North Platte/Lincoln Co.=Central) — use county-level lookup." },
+      { "state": "Nevada", "abbr": "NV", "timezone": "Pacific", "observes_dst": true, "split": true, "zip3_reliable": true, "split_notes": "Most of Nevada is Pacific. Only the city of West Wendover (not all of Elko County) is Mountain Time, and it has a single ZIP5 (89883) under ZIP3 898. Corrected from an earlier draft: ZIP3 897 (rest of Elko County — Elko, Wells, Jackpot) is Pacific, NOT Mountain, and must be removed from the Mountain range. Correct Mountain range is ZIP3 898 only." },
+      { "state": "New Hampshire", "abbr": "NH", "timezone": "Eastern", "observes_dst": true },
+      { "state": "New Jersey", "abbr": "NJ", "timezone": "Eastern", "observes_dst": true },
+      { "state": "New Mexico", "abbr": "NM", "timezone": "Mountain", "observes_dst": true },
+      { "state": "New York", "abbr": "NY", "timezone": "Eastern", "observes_dst": true },
+      { "state": "North Carolina", "abbr": "NC", "timezone": "Eastern", "observes_dst": true },
+      { "state": "North Dakota", "abbr": "ND", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "County list corrected from an earlier draft that badly undercounted this: Mountain counties are Adams, Billings, Bowman, Golden Valley, Grant, Hettinger, Slope, and Stark (entirely), plus parts of Dunn, McKenzie, and Sioux. ZIP3 586 alone misses Grant/Sioux (585) and McKenzie (588); approximate range is ZIP3 585-588 (approximate — verify ZIP5 at boundary), but Central-time territory also falls within this range so ZIP3 cannot fully resolve it — use county-level lookup." },
+      { "state": "Ohio", "abbr": "OH", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Oklahoma", "abbr": "OK", "timezone": "Central", "observes_dst": true },
+      { "state": "Oregon", "abbr": "OR", "timezone": "Pacific", "observes_dst": true, "split": true, "zip3_reliable": true, "split_notes": "Most of Oregon is Pacific. Most of Malheur County (far eastern Oregon) is Mountain — a small, essentially unpopulated southern sliver of the county is technically Pacific, but ZIP3 979 correctly and completely covers the populated Mountain-time area (Ontario, Vale, Nyssa, Jordan Valley)." },
+      { "state": "Pennsylvania", "abbr": "PA", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Rhode Island", "abbr": "RI", "timezone": "Eastern", "observes_dst": true },
+      { "state": "South Carolina", "abbr": "SC", "timezone": "Eastern", "observes_dst": true },
+      { "state": "South Dakota", "abbr": "SD", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Eastern South Dakota is Central. Western South Dakota is Mountain, but ZIP3 577 alone is grossly insufficient — confirmed Mountain ZIPs also fall in 576 (Bison) and 575 (Kadoka), and 575 is itself SHARED with Central (Murdo/Jones Co. uses the same 575 prefix). A 2003 federal order moved Jones, Mellette, and Todd counties fully into Central — do not trust older sources that still list Mellette as Mountain. Use county/ZIP5-level lookup, especially for 575." },
+      { "state": "Tennessee", "abbr": "TN", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": false, "split_notes": "Corrected from an earlier draft that had this substantially wrong (the single highest-severity error found in this table). Eastern Tennessee ZIP3 (approximate — verify ZIP5 at boundary): 373, 374 (Chattanooga — was missing entirely before), 376 (Tri-Cities/Johnson City — was missing before), 377, 378, 379. Central Tennessee ZIP3 (approximate — verify ZIP5 at boundary): 370, 371, 372, 375 (Memphis), 380, 381 (Memphis), 382, 383, 384, 385 (Cookeville). The earlier draft's Central range (370-372, 380-384) omitted Memphis (375, 381) entirely and its Eastern range omitted Chattanooga and the Tri-Cities." },
+      { "state": "Texas", "abbr": "TX", "timezone": "Central", "observes_dst": true, "split": true, "zip3_reliable": true, "split_notes": "Most of Texas is Central. Only El Paso and Hudspeth counties are officially Mountain Time (ZIP3 798-799, confirmed complete) — Culberson County is officially entirely Central; informal local Mountain-time use near Guadalupe Mountains National Park is not a recognized boundary. Note: El Paso also has ZIP3 885 (a PO-box/large-volume range), same Mountain time, relevant only if that prefix appears in your data." },
+      { "state": "Utah", "abbr": "UT", "timezone": "Mountain", "observes_dst": true },
+      { "state": "Vermont", "abbr": "VT", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Virginia", "abbr": "VA", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Washington", "abbr": "WA", "timezone": "Pacific", "observes_dst": true },
+      { "state": "West Virginia", "abbr": "WV", "timezone": "Eastern", "observes_dst": true },
+      { "state": "Wisconsin", "abbr": "WI", "timezone": "Central", "observes_dst": true },
+      { "state": "Wyoming", "abbr": "WY", "timezone": "Mountain", "observes_dst": true },
+      { "state": "Puerto Rico", "abbr": "PR", "timezone": "Atlantic", "observes_dst": false },
+      { "state": "U.S. Virgin Islands", "abbr": "VI", "timezone": "Atlantic", "observes_dst": false },
+      { "state": "Guam", "abbr": "GU", "timezone": "Chamorro", "observes_dst": false },
+      { "state": "Northern Mariana Islands", "abbr": "MP", "timezone": "Chamorro", "observes_dst": false },
+      { "state": "American Samoa", "abbr": "AS", "timezone": "Samoa", "observes_dst": false }
+    ]
+  },
+  "sip_codes": [
+    {
+      "code": "100",
+      "technical_meaning": "Trying",
+      "plain_meaning": "The call request was received and call setup has started.",
+      "notes": "Not a final outcome. The network is attempting to reach the destination. The call may later ring, fail, be answered, or be rejected."
+    },
+    {
+      "code": "180",
+      "technical_meaning": "Ringing",
+      "plain_meaning": "The destination phone is ringing.",
+      "notes": "Not a final outcome. The phone is actively alerting the recipient. The recipient may answer, decline, or ignore the call."
+    },
+    {
+      "code": "181",
+      "technical_meaning": "Call Is Being Forwarded",
+      "plain_meaning": "The call is being redirected to another number or destination.",
+      "notes": "Usually not critical. Common with call forwarding, voicemail systems, or PBX routing."
+    },
+    {
+      "code": "183",
+      "technical_meaning": "Session Progress",
+      "plain_meaning": "The call is progressing through the network.",
+      "notes": "Not a final outcome. Often indicates early media such as ringback tones, announcements, or carrier processing before answer."
+    },
+    {
+      "code": "200",
+      "technical_meaning": "OK",
+      "plain_meaning": "Answered",
+      "notes": "Reviewer prefers \"Answered\" instead of \"Connected.\" SIP 200 means the call was accepted. Whether it was a human, voicemail, IVR, or answering machine is determined by other systems."
+    },
+    {
+      "code": "403",
+      "technical_meaning": "Forbidden",
+      "plain_meaning": "Refused",
+      "notes": "Reviewer prefers \"Refused\" instead of \"Blocked.\" The destination rejected the request. A true carrier spam block may appear as other SIP responses depending on the network."
+    },
+    {
+      "code": "404",
+      "technical_meaning": "Not Found",
+      "plain_meaning": "Invalid or unreachable number",
+      "notes": "The number does not exist, is disconnected, or cannot be located by the network."
+    },
+    {
+      "code": "486",
+      "technical_meaning": "Busy Here",
+      "plain_meaning": "Busy",
+      "notes": "Reviewer recommends simply calling this \"Busy.\" Usually means the recipient is already on another call or unavailable at that moment. Retrying later may succeed."
+    },
+    {
+      "code": "503",
+      "technical_meaning": "Service Unavailable",
+      "plain_meaning": "Service temporarily unavailable",
+      "notes": "Officially indicates network congestion, maintenance, or a temporary carrier issue. However, in practice some carriers may use 503 for call blocking, spam mitigation, or traffic management. Context matters."
+    },
+    {
+      "code": "603",
+      "technical_meaning": "Decline",
+      "plain_meaning": "Declined or Blocked",
+      "notes": "Reviewer notes this can mean either: (1) the consumer actively declined the call, or (2) a downstream carrier rejected/blocked the call. Interpretation depends on call flow and carrier behavior."
+    },
+    {
+      "code": "608",
+      "technical_meaning": "Rejected / Spam-like",
+      "plain_meaning": "Suspected spam call",
+      "notes": "Very important code. Indicates the call was identified as unwanted, spam-like, or otherwise undesirable by a carrier, analytics provider, or destination network."
+    }
+  ],
+  "dialer_status": [
+    { "code": "DC", "definition": "Disconnected Number", "connect_status": "Not Connected", "description": "The number is no longer in service or has already been disconnected.", "flagged": false },
+    { "code": "AA", "definition": "Answering Machine Detected", "connect_status": "Not Connected", "description": "Set by the system when the AMD detection detects the call being an answering machine.", "flagged": false },
+    { "code": "OI", "definition": "Operator Intercept", "connect_status": "Not Connected", "description": "The system detected a prerecorded message that is a human voice stating that this call is not in service anymore or some other message explaining this number is disconnected.", "flagged": false },
+    { "code": "A", "definition": "Answering Machine", "connect_status": "Not Connected", "description": "Call being an answering machine.", "flagged": false },
+    { "code": "NA", "definition": "No Answer AutoDial", "connect_status": "Not Connected", "description": "The Lead did not answer the call.", "flagged": false },
+    { "code": "UB", "definition": "Busy", "connect_status": "Not Connected", "description": "Calls that are agent disposed as Busy.", "flagged": false },
+    { "code": "HU", "definition": "Hang Up", "connect_status": "Connected", "description": "Lead hang up during the call", "flagged": false },
+    { "code": "DROP", "definition": "Agent Not Available In Campaign", "connect_status": "Connected", "description": "The call waited in the Queue, but no Agent was available in the Campaign, so the call was dropped.", "flagged": true },
+    { "code": "LOGOUT", "definition": "Agent Force Logout", "connect_status": "Connected", "description": "The Status of the Lead when the Agent was forced to log out by the Admin before Dispositioning the call.", "flagged": false },
+    { "code": "DISQ", "definition": "Disqualified", "connect_status": "Connected", "description": "Lead does not qualify", "flagged": false },
+    { "code": "WRONG", "definition": "Wrong Number", "connect_status": "Connected", "description": "Wrong Number", "flagged": false },
+    { "code": "MEDICR", "definition": "Has Medicare", "connect_status": "Connected", "description": "Lead has Medicare", "flagged": false },
+    { "code": "MEDICD", "definition": "Has Medicaid & U65", "connect_status": "Connected", "description": "Lead has Medicaid & age is under 65", "flagged": false },
+    { "code": "FORBID", "definition": "Forbidden", "connect_status": "Not Connected", "description": "The system has determined the Lead to be of poor quality and rejected the call as a result.", "flagged": false },
+    { "code": "PDROP", "definition": "Pre-Routing Drop", "connect_status": "Not Connected", "description": "The Outbound call fails due to a Carrier or server issue.", "flagged": true },
+    { "code": "B", "definition": "System Busy", "connect_status": "Not Connected", "description": "Calls that are automatically filtered by the dialer as Busy.", "flagged": false },
+    { "code": "SALE", "definition": "Xfer / Sale", "connect_status": "Connected", "description": "Lead was transferred successfully to the buyer", "flagged": false },
+    { "code": "DNC", "definition": "Do NOT Call", "connect_status": "Connected", "description": "A Disposition used by Agents to add a number to the Global DNC list.", "flagged": false },
+    { "code": "CG", "definition": "Congestion", "connect_status": "Not Connected", "description": "This typically means that there is a high volume of activity on the network(s) at one particular time. During Congestion, the call may ring as busy or unavailable, but this may not mean the Lead is bad, only that the networks are jammed.", "flagged": false },
+    { "code": "CIDB", "definition": "Blocked Call", "connect_status": "Not Connected", "description": "The call is blocked due to the CID being flagged by the call carrier.", "flagged": false },
+    { "code": "INSRNC", "definition": "Has Insurance", "connect_status": "Connected", "description": "Has Insurance", "flagged": false },
+    { "code": "INCOMP", "definition": "Incomplete Call", "connect_status": "Connected", "description": "The Status of the Lead if the Agent closed their browser while on a call. It will be changed to this status after 24 hours.", "flagged": false },
+    { "code": "AH", "definition": "Answered & Hung-up", "connect_status": "Connected", "description": "Call was answered & hang up", "flagged": false },
+    { "code": "NI", "definition": "Not Interested", "connect_status": "Connected", "description": "Lead Not Interested", "flagged": false },
+    { "code": "LNGOTH", "definition": "Language Other than English", "connect_status": "Connected", "description": "Language other than English", "flagged": false },
+    { "code": "DAIR", "definition": "Dead Air", "connect_status": "Connected", "description": "Dead Air", "flagged": true },
+    { "code": "INST", "definition": "Interested", "connect_status": "Connected", "description": "Lead is Interested", "flagged": false },
+    { "code": "FASD", "definition": "FAS Detected", "connect_status": "Connected", "description": "The carrier returns the answer signal earlier than when the Lead answers. Or the call is not terminated right when the Lead hangs up and waits for the call to disconnect.", "flagged": false },
+    { "code": "TRICAR", "definition": "DQ - Has Tricare/VA", "connect_status": "Connected", "description": "Lead disqualified as they have Tricare or VA", "flagged": false },
+    { "code": "NOTA", "definition": "Person Says Not Available", "connect_status": "Connected", "description": "TP said Lead not Available", "flagged": false },
+    { "code": "XFAIL", "definition": "XFER Fail", "connect_status": "Connected", "description": "Buyer didn't answer", "flagged": false },
+    { "code": "N", "definition": "No Answer RINGING", "connect_status": "Not Connected", "description": "The Lead did not answer the call.", "flagged": false },
+    { "code": "NP", "definition": "No Pitch No Price", "connect_status": "Connected", "description": "No Pitch No Price", "flagged": false },
+    { "code": "CALLHU", "definition": "Caller Hung Up", "connect_status": "Connected", "description": "The caller hung up.", "flagged": false },
+    { "code": "ERI", "definition": "Agent Lost Connection", "connect_status": "Connected", "description": "The Agent was on a live call when their browser lost connection to the web server, or they closed their browser in the middle of a call.", "flagged": false },
+    { "code": "AB65", "definition": "Above 65", "connect_status": "Connected", "description": "Lead Age is Above 65", "flagged": false },
+    { "code": "HUINT", "definition": "HU INTRO", "connect_status": "Connected", "description": "Lead hang up during Intro", "flagged": false },
+    { "code": "DNCLCC", "definition": "Do NOT Call Lead Consent Concern", "connect_status": "Not Connected", "description": "This response indicates that the Lead has declined or blocked the call without voicemail availability and may reflect potential consent concerns.", "flagged": false },
+    { "code": "DQNB", "definition": "DQ - Has Benefits", "connect_status": "Connected", "description": "Lead disqualified as they already have Benefits", "flagged": false },
+    { "code": "DQNENG", "definition": "DQ - No English", "connect_status": "Connected", "description": "Lead disqualified as they can't speak English", "flagged": false },
+    { "code": "DNQA", "definition": "DQ - Age", "connect_status": "Connected", "description": "Lead disqualified due to Age", "flagged": false },
+    { "code": "DNQD", "definition": "DQ - Not Disabled", "connect_status": "Connected", "description": "Lead disqualified as they are Not Disabled", "flagged": false },
+    { "code": "DNAA", "definition": "DQ - Applied/Attorney", "connect_status": "Connected", "description": "Lead disqualified as they have Applied/Attorney", "flagged": false },
+    { "code": "DNQAC", "definition": "DQ - Already Covered", "connect_status": "Connected", "description": "Lead disqualified as they are already covered", "flagged": false },
+    { "code": "DNQ5", "definition": "DQ - 5 Out Of Last 10", "connect_status": "Connected", "description": "Lead disqualified", "flagged": false },
+    { "code": "HUCL", "definition": "HU CLOSE", "connect_status": "Connected", "description": "Lead hang up during closing of the call", "flagged": false },
+    { "code": "HUANSW", "definition": "HU ANSWER", "connect_status": "Connected", "description": "Lead answered & hang up", "flagged": false },
+    { "code": "DQMEDV", "definition": "DQ - Medicare", "connect_status": "Connected", "description": "Lead disqualified as they have Medicare", "flagged": false },
+    { "code": "DNQNV", "definition": "DQ - No Vehicle", "connect_status": "Connected", "description": "Lead disqualified as they don't have any vehicle", "flagged": false },
+    { "code": "DNQSPN", "definition": "DQ - Spanish", "connect_status": "Connected", "description": "Lead disqualified due to Spanish", "flagged": false },
+    { "code": "DNQAA", "definition": "DQ - Auto Age", "connect_status": "Connected", "description": "Lead disqualified due to Auto Age", "flagged": false },
+    { "code": "DNQ12", "definition": "DQ - Next 12 Months", "connect_status": "Connected", "description": "Lead disqualified as they would be planning it in next 12 months", "flagged": false },
+    { "code": "DNQI", "definition": "DQ - Income", "connect_status": "Connected", "description": "Lead disqualified as they have Income source", "flagged": false },
+    { "code": "DNND", "definition": "DQ - No Doctor", "connect_status": "Connected", "description": "Lead disqualified as they have a doctor", "flagged": false },
+    { "code": "MINOR", "definition": "DQ - Minor", "connect_status": "Connected", "description": "Lead disqualified as he/she is minor", "flagged": false },
+    { "code": "DNQNI", "definition": "DQ - No Income", "connect_status": "Connected", "description": "Lead disqualified due to no income", "flagged": false },
+    { "code": "ROBO", "definition": "Robo Call", "connect_status": "Not Connected", "description": "Pre Recording was set by the lead", "flagged": false },
+    { "code": "DNQHM", "definition": "DQ - High Mileage", "connect_status": "Connected", "description": "Lead disqualified due to high vehicle mileage", "flagged": false },
+    { "code": "DNQOPL", "definition": "DQ - No Plans Avail", "connect_status": "Connected", "description": "Lead disqualified as they have no plans to avail", "flagged": false },
+    { "code": "ADNAFF", "definition": "DQ - Affordability", "connect_status": "Connected", "description": "Lead disqualified due to Affordability", "flagged": false },
+    { "code": "DNQSS", "definition": "DQ - No Social Security", "connect_status": "Connected", "description": "Lead disqualified due to No Social Security", "flagged": false },
+    { "code": "BUSINS", "definition": "Business", "connect_status": "Connected", "description": "Lead disqualified as it's a business line", "flagged": false }
+  ]
+}
